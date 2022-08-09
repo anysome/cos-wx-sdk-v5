@@ -6,7 +6,7 @@ var xml2json = require('../lib/xml2json');
 var json2xml = require('../lib/json2xml');
 var base64 = require('../lib/base64');
 var btoa = base64.btoa;
-var wxfs = wx.getFileSystemManager();
+var wxfs = uni.getFileSystemManager();
 
 function camSafeUrlEncode(str) {
     return encodeURIComponent(str)
@@ -571,7 +571,7 @@ var compareVersion = function (v1, v2) {
 };
 
 var canFileSlice = (function () {
-    var systemInfo = wx.getSystemInfoSync();
+    var systemInfo = uni.getSystemInfoSync();
     var support = compareVersion(systemInfo.SDKVersion, '2.10.0') >= 0;
     var needWarning = !support && systemInfo.platform === "devtools";
     return function () {

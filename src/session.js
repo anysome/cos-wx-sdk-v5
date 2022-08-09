@@ -8,7 +8,7 @@ var timer;
 
 var getCache = function () {
     try {
-        var val = JSON.parse(wx.getStorageSync(cacheKey));
+        var val = JSON.parse(uni.getStorageSync(cacheKey));
     } catch (e) {
     }
     if (!val) val = [];
@@ -16,7 +16,7 @@ var getCache = function () {
 };
 var setCache = function () {
     try {
-        wx.setStorageSync(cacheKey, JSON.stringify(cache))
+        uni.setStorageSync(cacheKey, JSON.stringify(cache))
     } catch (e) {
     }
 };
