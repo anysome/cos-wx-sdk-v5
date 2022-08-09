@@ -88,7 +88,7 @@ var xml2json = __webpack_require__(14);
 var json2xml = __webpack_require__(19);
 var base64 = __webpack_require__(4);
 var btoa = base64.btoa;
-var wxfs = wx.getFileSystemManager();
+var wxfs = uni.getFileSystemManager();
 
 function camSafeUrlEncode(str) {
     return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A');
@@ -631,7 +631,7 @@ var compareVersion = function compareVersion(v1, v2) {
 };
 
 var canFileSlice = function () {
-    var systemInfo = wx.getSystemInfoSync();
+    var systemInfo = uni.getSystemInfoSync();
     var support = compareVersion(systemInfo.SDKVersion, '2.10.0') >= 0;
     var needWarning = !support && systemInfo.platform === "devtools";
     return function () {
@@ -2627,14 +2627,14 @@ var timer;
 
 var getCache = function getCache() {
     try {
-        var val = JSON.parse(wx.getStorageSync(cacheKey));
+        var val = JSON.parse(uni.getStorageSync(cacheKey));
     } catch (e) {}
     if (!val) val = [];
     return val;
 };
 var setCache = function setCache() {
     try {
-        wx.setStorageSync(cacheKey, JSON.stringify(cache));
+        uni.setStorageSync(cacheKey, JSON.stringify(cache));
     } catch (e) {}
 };
 
@@ -9947,7 +9947,7 @@ var request = function request(params, callback) {
         headers['x-cos-acl'] && (formData.acl = headers['x-cos-acl']);
         !formData['Content-Type'] && (formData['Content-Type'] = '');
 
-        requestTask = wx.uploadFile({
+        requestTask = uni.uploadFile({
             url: url,
             method: method,
             name: 'file',
@@ -9995,7 +9995,7 @@ var request = function request(params, callback) {
                 httpDNSServiceId: httpDNSServiceId
             });
         }
-        requestTask = wx.request(requestParams);
+        requestTask = uni.request(requestParams);
     }
 
     return requestTask;
